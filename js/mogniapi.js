@@ -1,4 +1,4 @@
-let baseurl = "http://localhost:8000/"
+let baseurl = "https://nabokovai.herokuapp.com/"
 
 async function getExampleFacts() {
 	let url = baseurl + "example_facts"

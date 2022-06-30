@@ -132,10 +132,21 @@ function selectFactsForParagraph() {
     return facts
 }
 
+
+function getTopic() {
+    let topic = document.getElementById('topic').value;
+    if (topic === "") {
+        topic = "Stede Bonnet";
+        topic.value = "Stede Bonnet";
+    }
+    return topic
+}
+
+
 async function regenerateParagraph() {
     let spinner = document.getElementById("regenerateParagraphSpinner");
     spinner.hidden = false;
-    const topic = document.getElementById('topic').value;
+    const topic = getTopic()
     const tone = document.getElementById('paragraphtone').value;
     facts = selectFactsForParagraph();
     console.log(facts);
@@ -156,7 +167,7 @@ function deleteFacts(){
 async function  regenerateFacts() {
     let spinner = document.getElementById("regenerateFactsSpinner");
     spinner.hidden = false;
-    const topic = document.getElementById('topic').value;
+    const topic = getTopic();
     const tone = document.getElementById('paragraphtone').value;
     const url = document.getElementById('source-select').selectedOptions[0].value
 
@@ -187,7 +198,7 @@ function labelBadUrl(url) {
 
 
 async function topicToParagraph() {
-    const topic = document.getElementById('topic').value;
+    const topic = getTopic();
     const tone = document.getElementById('paragraphtone').value;
 
     let progressbardiv = document.getElementById("paragraphwritingbar")
