@@ -76,8 +76,6 @@ async function selectFacts() {
 
 
 function displayFinalParagraph(data) {
-    const loadingllama = document.getElementById('loading')
-    loadingllama.style.display = "none";
     const finalparagraph = data['paragraph'];
     let paragraphholder = document.getElementById("paragraphholder");
     paragraphholder.innerText = finalparagraph;
@@ -90,8 +88,6 @@ async function gptparagraphrequest() {
     const newfactarray = [];
     for (item of factarray) {newfactarray.push(item.firstChild.data)};
     const facts = newfactarray.join("\n")
-    const loadingllama = document.getElementById('loading')
-    loadingllama.style.display = "block";
     const tone = document.getElementById('paragraphtone').value
     return postFactsToParagraph(title, facts, tone)
 }
