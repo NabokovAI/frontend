@@ -11,82 +11,79 @@
 </head>
 <body>
 <div class="container">
-    <ul class="nav justify-content-center nav-pills">
+    <!-- <ul class="nav justify-content-center nav-pills">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="general-demo" href="#index.html">General</a>
+        <a class="nav-link" href="index.html">General</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="food-truck-demo.html">Food Trucks</a>
+        <a class="nav-link active" aria-current="food-truck" href="food-truck-demo.html">Food Trucks</a>
       </li>
-    </ul>
+    </ul> -->
+
     <form>
-        <div class="mb-3">
-          <label for="topic" class="form-label">Topic</label>
-          <input type="text" class="form-control" id="topic" placeholder="Stede Bonnet">
-        </div>
-            <br>
-        <p>Select a Tone:</p>
-        <select name="tone" id="paragraphtone" class="form-select">
-            <option value="ad" selected>Ad</option>
-            <option value="recommendation">Recommendation</option>
-            <option value="angry">Angry</option>
-            <option value="informational">Informational</option>
+        <p>Select a Food Truck:</p>
+        <select name="tone" id="foodtruckselect" class="form-select" onchange="runTruck()">
+            <option value="none" selected>Select A Truck</option>
         </select>
-        <button onclick="topicToParagraph()" type="button" class="btn btn-primary">Write Paragraph</button>
     </form>
     <br>
-    <div class="progress" id="paragraphwritingbar" hidden>
-      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-    </div>
-    <br>
-    <div hidden id="paragraphdiv">
-        <h4>Paragraph</h4>
-        <p id="paragraphholder"></p>
-        <button type="button" class="btn btn-primary" onclick="regenerateParagraph()">Regenerate Using the Facts</button>
-        <div class="spinner-border" role="status" id="regenerateParagraphSpinner" hidden>
-          <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-    <br>
-    <h4 id="sourceheader" hidden>Sources</h4>
-    <div class="col-lg">
-        <div class="card" id="sourcecard" hidden>
-          <div class="card-header" id="sourcetitle">
-            Wikipedia | Llamas
-          </div>
-          <div class="card-body">
-            <a href="#" class="card-link" id="linkholder">https://en.wikipedia.org/wiki/Llama</a>
-          </div>
-          <div class="card-header">
-            Facts
-          </div>
-          <div class="card-body">
-              <div class="spinner-border" role="status" id="regenerateFactsSpinner" hidden>
-                <span class="visually-hidden">Loading...</span>
+    <h3 hidden id="sourceslabel">Sources</h3>
+    <div class="row">
+        <div class="col-lg">
+            <div class="card" hidden>
+              <div class="card-header">
+                Scraped Paragraph
               </div>
-              <ul class="list-group list-group-flush overflow-auto" id="factList" style="max-height: 200px;">
-              </ul>
-          </div>
+              <div class="card-body">
+                <p class="card-text overflow-auto" id="foodtruckdescriptiondiv" style="max-height: 200px;"></p>
+              </div>
+              <div class="card-header">
+                Facts
+              </div>
+              <div class="card-body">
+                    <div class="spinner-border" role="status" id="getDescriptionFactsSpinner" hidden>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                  <ul class="list-group list-group-flush overflow-auto" style="max-height: 200px;" id="paragraphFactList">
+                  </ul>
+              </div>
+            </div>
         </div>
-    </div>
-    <form id="newfactform" hidden>
-        <div class="mb-3">
-            <input type="text" name="newFact" id="newFact" class="form-control" placeholder="add your own facts">
-            <button onclick="addUserFacts()" class="btn btn-primary" id="userfactbutton">Add Fact</button>
-        </div>
-    </form>
-    <div hidden id="sourceholder">
-        <select id="source-select" aria-label="Source Options" class="form-select">
-          <option selected>Selecting a source...</option>
-        </select>
-         <button type="button" class="btn btn-primary" onclick="regenerateFacts()">Regenerate Facts for Selected Source</button>
+        <div class="col-lg">
+            <div class="card" hidden>
+              <div class="card-header">
+                Database Data
+              </div>
+              <div class="card-body">
+                  <ul class="list-group list-group-flush overflow-auto" id="dbdataholder" style="max-height: 200px;">
+                  </ul>
+              </div>
+              <div class="card-header hidden">
+                Facts
+              </div>
+              <div class="card-body">
+                  <div class="spinner-border" role="status" id="getDBFactsSpinner" hidden>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                  <ul class="list-group list-group-flush overflow-auto" style="max-height: 200px;" id='dbfactlist'>
+                  </ul>
+              </div>
+            </div>
+        </div>        
     </div>
     <br>
-    <div hidden id="badurlsholder">
-        <h5>Couldn't Scrape:</h5>
+    <div hidden id="paragraphresultsdiv">
+        <h3>Generated Description</h3>
+        <div class="spinner-border" role="status" id="getparagraphresultsspinner" hidden>
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p id='generatedparagraph'></p>
     </div>
-    
 </div>
 </body>
-<script src="js/general-demo.js"></script>
+<script src="js/food-truck.js"></script>
+<script src="js/foodtruckdata.js"></script>
 <script src="js/mogniapi.js"></script> 
+<script type="text/javascript">
+	loadTrucks()
+</script>
