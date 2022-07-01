@@ -201,3 +201,35 @@ function testpostFoodTruckParseFacts(topic, text) {
 function testpostFoodTruckFactsToParagraph(name, facts) {
 	return { "paragraph": "Mustache Pretzels is a delicious food truck that offers a variety of pretzels, dips, and queso. The menu is full of fresh and locally grown ingredients that are sure to please everyone at your event. Catering events has never been easier or tastier!"}
 }
+
+
+
+function loadDescriptions() {
+	let rows = document.getElementById("truckdescriptionrows");
+	descriptions.forEach(function(truck) {
+		// <tr>
+    //   <th scope="row">1</th>
+    //   <td>Mark</td>
+    //   <td>Otto</td>
+    //   <td>@mdo</td>
+    // </tr>
+    let rowholder = document.createElement("tr");
+    let thelem = document.createElement("td");
+    thelem.innerText = truck['Name'];
+    thelem.setAttribute("scope", "row");
+    rowholder.appendChild(thelem);
+    
+    let descriptionelem = document.createElement("td");
+    descriptionelem.innerText = truck["Description"]
+    rowholder.appendChild(descriptionelem);
+
+    let rhelem = document.createElement("td");
+    rhelem.innerText = truck["Roaming Hunger"];
+    rowholder.appendChild(rhelem);
+
+    let factselem = document.createElement("td");
+    factselem.innerText = truck["Facts"]
+    rowholder.appendChild(factselem);
+    rows.appendChild(rowholder);
+	})
+}
